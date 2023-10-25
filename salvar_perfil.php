@@ -1,5 +1,4 @@
 <?php
-// Certifique-se de que a sessão esteja iniciada
 session_start();
 
 // Verifique se o usuário está autenticado (verifique sua lógica de autenticação)
@@ -20,7 +19,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = $_POST['nome'];
     $email = $_POST['email'];
 
-    // Aqui você pode adicionar validação de dados, como verificar se o email é válido ou outros campos, conforme necessário.
+    // Verifique se um arquivo de imagem foi enviado
+    if ($_FILES['avatar']['name']) {
+        $avatar_temp = $_FILES['avatar']['tmp_name'];
+        $avatar_nome = $_FILES['avatar']['name'];
+        $avatar_destino = __DIR__ . '/image/' . $avatar_nome;
+
+
+        // Mova o arquivo de imagem para o destino
+        move_uploaded_file($avatar_temp, $avatar_destino);
+
+        // Atualize o nome da foto de perfil no banco de dados
+        $sql_update_avatar = "UPDATE usuarios SET foto = '$avatar_nome' WHERE id = $user_id";
+        $conn->query($sql_update_avatar);
+    }
 
     // Atualize as informações do perfil no banco de dados
     $sql = "UPDATE usuarios SET nome = '$nome', email = '$email' WHERE id = $user_id";

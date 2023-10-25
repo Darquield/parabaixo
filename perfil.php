@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -15,19 +16,20 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <header>
-            <div id="logo">
-                <img src="./image/PK_white.png" alt="" width="100">
-                <a href="#"><h1>Fórmula1Passionados</h1></a>
-            </div>
-            <div id="menu">
-                <nav>
-                <ul class="nav-list">
+<header>
+        <div id="logo"> <a href="index.php"></a>
+            
+
+            <a href="index1.php"><img src="./image/PK_white.png" alt="" width="100"> <h1>Fórmula1Passionados</h1></a>
+        </div>
+        <div id="menu">
+            <nav>
+            <ul class="nav-list">
                     <li >
                         <a href="index1.php">Página Inicial</a>
                     </li>
                     <li >
-                        <a href="equipas.php">Equipas</a>
+                        <a href="equipas.php" >Equipas</a>
                     </li>
                     <li>
                         <a href="pilotos.php">Pilotos</a>
@@ -36,15 +38,15 @@
                         <a href="circuitos.php">Circuitos</a>
                     </li>
                     <li>
-                        <a href="Apostas.php">Apostas</a>
+                        <a href="apostas.php">Apostas</a>
                     </li>
                     <li class="first current_page_item">
-                        <a href="perfil.php">Conta</a>
+                        <a href="perfil.php" >Sair</a>
                     </li>
                 </ul>
-                </nav>
-            </div>
-        </header>
+            
+            </nav>
+    </header>
     
         <main>
             <section id="logout">

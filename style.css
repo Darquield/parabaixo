@@ -81,6 +81,10 @@ main {
 
 /* Estilos para rodapé */
 footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background-color: var(--cor-secundaria);
     color: var(--cor-fundo);
     text-align: center;

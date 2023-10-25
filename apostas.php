@@ -1,65 +1,3 @@
-<?php
-// Configurações de conexão com o banco de dados
-$servername = "localhost";
-$username = "Wagner";
-$password = "123";
-$dbname = "pap";
-
-// Criar conexão
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Verificar conexão
-if ($conn->connect_error) {
-  die("Connection failed: " . $conn->connect_error);
-}
-
-// Tratar o formulário de apostas
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-  if (isset($_POST['pilotoEscolhido'])) {
-    $pilotoEscolhido = $_POST['pilotoEscolhido'];
-
-    // Preparar e executar a consulta de inserção
-    $sql = "INSERT INTO apostas (piloto) VALUES ('$pilotoEscolhido')";
-
-    if ($conn->query($sql) === TRUE) {
-      echo "Aposta registrada com sucesso!";
-    } else {
-      echo "Erro ao registrar a aposta: " . $conn->error;
-    }
-  } else if (isset($_POST['votoPilotoMes'])) {
-    $votoPilotoMes = $_POST['votoPilotoMes'];
-
-    // Preparar e executar a consulta de inserção
-    $sql = "INSERT INTO votos (piloto) VALUES ('$votoPilotoMes')";
-
-    if ($conn->query($sql) === TRUE) {
-      echo "Voto registrado com sucesso!";
-    } else {
-      echo "Erro ao registrar o voto: " . $conn->error;
-    }
-  }
-}
-
-// Consulta SQL para recuperar o número de apostas para cada piloto
-$sqlApostas = "SELECT piloto, COUNT(*) as num_apostas FROM apostas GROUP BY piloto";
-$resultApostas = $conn->query($sqlApostas);
-
-$labels = array();
-$data = array();
-
-if ($resultApostas->num_rows > 0) {
-    // Saída de dados de cada linha
-    while($row = $resultApostas->fetch_assoc()) {
-        array_push($labels, $row["piloto"]);
-        array_push($data, $row["num_apostas"]);
-    }
-}
-
-// Fechar a conexão
-$conn->close();
-?>
-
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,21 +7,20 @@ $conn->close();
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <header>
-        
-            <div id="logo">
-                <img src="./image/PK_white.png" alt="" width="100">
-    
-                <a href="#"><h1>Fórmula1Passionados</h1></a>
-            </div>
-            <div id="menu">
-                <nav>
-                <ul class="nav-list">
+<header>
+        <div id="logo"> <a href="index.php"></a>
+            
+
+            <a href="index1.php"><img src="./image/PK_white.png" alt="" width="100"> <h1>Fórmula1Passionados</h1></a>
+        </div>
+        <div id="menu">
+            <nav>
+            <ul class="nav-list">
                     <li >
                         <a href="index1.php">Página Inicial</a>
                     </li>
                     <li >
-                        <a href="equipas.php">Equipas</a>
+                        <a href="equipas.php" >Equipas</a>
                     </li>
                     <li>
                         <a href="pilotos.php">Pilotos</a>
@@ -92,20 +29,21 @@ $conn->close();
                         <a href="circuitos.php">Circuitos</a>
                     </li>
                     <li class="first current_page_item">
-                        <a href="Apostas.php">Apostas</a>
+                        <a href="apostas.php" >Apostas</a>
                     </li>
                     <li>
-                        <a href="perfil.php">Conta</a>
+                        <a href="perfil.php">Sair</a>
                     </li>
                 </ul>
-                </nav>
+            
+            </nav>
     </header>
 
     <main>
         
         <section id="apostasCorrida">
             <h2>Apostas na Próxima Corrida</h2>
-            <form id="formApostas">
+            <form id="formApostas" method="POST" action="apostas_send.php">
                 <label for="pilotoEscolhido">Escolha seu piloto favorito:</label>
                 <select id="pilotoEscolhido" name="pilotoEscolhido">
                     <!-- Opções de pilotos -->
@@ -146,30 +84,6 @@ $conn->close();
         
         </section>
 
-        <section id="votacaoPilotoMes">
-            <h2>Votação para Piloto do Mês</h2>
-            <p>Vote no seu piloto favorito deste mês:</p>
-            <ul>
-                <li>
-                    <label for="piloto1"><input type="radio" id="piloto1" name="votoPilotoMes" value="Piloto 1"> Piloto 1</label>
-                </li>
-                <li>
-                    <label for="piloto2"><input type="radio" id="piloto2" name="votoPilotoMes" value="Piloto 2"> Piloto 2</label>
-                </li>
-                <!-- Adicione mais pilotos para votação conforme necessário -->
-            </ul>
-            
-            <button>
-                
-    
-                <span class="circle1"></span>
-                <span class="circle2"></span>
-                <span class="circle3"></span>
-                <span class="circle4"></span>
-                <span class="circle5"></span>
-                <span class="text">Votar</span>
-           </button>
-        </section>
         <section id="noticiaComVideo">
             <div class="coluna-video">
                 <h2>Vídeo em Destaque</h2>
@@ -191,7 +105,9 @@ $conn->close();
         
         
     </main>
+    
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 <script>
     // Função para embaralhar aleatoriamente um array
     function shuffleArray(array) {
@@ -228,46 +144,66 @@ $conn->close();
     // Embaralhe a ordem dos nomes dos pilotos
     shuffleArray(nomesPilotos);
 
-    // Dados de exemplo para o gráfico de barras
-    const dadosEstatisticas = {
-        labels: nomesPilotos,
-        datasets: [{
-            label: 'Número de Apostas',
-            data: nomesPilotos.map(() => Math.floor(Math.random() * 21)), // Números de 0 a 20 para cada piloto
-            backgroundColor: nomesPilotos.map(() => 'rgba(75, 192, 192, 0.2)'),
-            borderColor: nomesPilotos.map(() => 'rgba(75, 192, 192, 1)'),
-            borderWidth: 1,
-        }],
-    };
+    document.addEventListener("DOMContentLoaded", function() {
+        // Dados de exemplo para o gráfico de barras
+        const dadosEstatisticas = {
+            labels: [], // Nomes dos pilotos serão preenchidos dinamicamente
+            datasets: [{
+                label: 'Número de Apostas',
+                data: [], // Números de apostas serão preenchidos dinamicamente
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1,
+            }],
+        };
 
-    // Configuração do gráfico de barras
-    const configEstatisticas = {
-        type: 'bar',
-        data: dadosEstatisticas,
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                        display: true,
-                        text: 'Número de Apostas',
+        // Configuração do gráfico de barras
+        const configEstatisticas = {
+            type: 'bar',
+            data: dadosEstatisticas,
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        title: {
+                            display: true,
+                            text: 'Número de Apostas',
+                        },
                     },
                 },
             },
-        },
-    };
+        };
 
-    // Crie um elemento canvas para o gráfico
-    const canvasEstatisticas = document.createElement('canvas');
-    canvasEstatisticas.id = 'graficoEstatisticas';
+        // Crie um elemento canvas para o gráfico
+        const canvasEstatisticas = document.createElement('canvas');
+        canvasEstatisticas.id = 'graficoEstatisticas';
 
-    // Adicione o canvas à seção de apostas
-    document.getElementById('apostasCorrida').appendChild(canvasEstatisticas);
+        // Adicione o canvas à seção de apostas
+        document.getElementById('apostasCorrida').appendChild(canvasEstatisticas);
 
-    // Renderize o gráfico no canvas
-    const ctxEstatisticas = document.getElementById('graficoEstatisticas').getContext('2d');
-    new Chart(ctxEstatisticas, configEstatisticas);
+        // Renderize o gráfico no canvas
+        const ctxEstatisticas = document.getElementById('graficoEstatisticas').getContext('2d');
+        const graficoEstatisticas = new Chart(ctxEstatisticas, configEstatisticas);
+
+        // Faça uma requisição AJAX para obter os dados das apostas do PHP
+        fetch('apostas_get.php')
+            .then(response => response.json())
+            .then(data => {
+                // Use os dados recebidos para configurar o gráfico
+                const pilotos = data.map(aposta => aposta.piloto);
+                const numApostas = data.map(aposta => aposta.num_apostas);
+
+                // Atualize os dados do gráfico com os dados das apostas
+                graficoEstatisticas.data.labels = pilotos;
+                graficoEstatisticas.data.datasets[0].data = numApostas;
+
+                // Atualize o gráfico
+                graficoEstatisticas.update();
+            })
+            .catch(error => console.error('Erro:', error));
+    });
 </script>
+
 
 
     <footer>

@@ -5,7 +5,7 @@ session_start();
 // Verifique se o usuário está autenticado (verifique sua lógica de autenticação)
 if (!isset($_SESSION['user_id'])) {
     // Redirecione para a página de login se o usuário não estiver autenticado
-    header("Location: loginn.php");
+    header("Location: login.php");
     exit();
 }
 
@@ -33,13 +33,15 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css.lll.css"> <!-- Certifique-se de criar um arquivo de estilo CSS (style.css) -->
     <title>Perfil</title>
+
 </head>
 <body>
+
     <div class="profile">
         <h1>Seu Perfil</h1>
         <form action="salvar_perfil.php" method="POST" enctype="multipart/form-data">
             <div class="profile-picture">
-                <img src="image/hamilton.jpeg" alt="Sua Foto de Perfil" style="display: block; margin: 0 auto;">
+                <img src="image/<?php echo $row['foto']; ?>" alt="Sua Foto de Perfil" style="display: block; margin: 0 auto;">
                 <input type="file" name="avatar" accept="image/*" id="avatar" style="display: none;">
                 <label for="avatar" class="change-avatar">Alterar Foto</label>
             </div>
