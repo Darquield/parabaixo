@@ -1,49 +1,70 @@
+<?php
+$servername = "localhost";
+$username = "Wagner";
+$password = "123";
+$dbname = "pap";
+
+// Crie uma conexão
+$conn = new mysqli($servername, $username, $password, $dbname);
+
+// Verifique a conexão
+if ($conn->connect_error) {
+    die("Falha na conexão: " . $conn->connect_error);
+}
+
+// Verifique se o formulário foi submetido
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Coleta os dados do formulário
+    $id_pilotos = $_POST['id_pilotos'];
+    $nome = $_POST['nome'];
+    $data_nascimento = $_POST['data_nascimento'];
+    $nacionalidade = $_POST['nacionalidade'];
+    $foto = $_POST['foto'];
+   
+    // Prepare e execute a declaração
+    $stmt = $conn->prepare("INSERT INTO pilotos (id_pilotos, nome, data_nascimento, nacionalidade, foto) VALUES (?, ?, ?, ?, ?)");
+    $stmt->bind_param("issss", $id_pilotos, $nome, $data_nascimento, $nacionalidade, $foto);
+
+    if ($stmt->execute()) {
+        echo "Registro inserido com sucesso";
+    } else {
+        echo "Erro ao inserir registro: " . $stmt->error;
+    }
+}
+
+$conn->close();
+?>
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin - Adicionar Piloto</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>Adicionar Piloto e Prêmios</title>
 </head>
 <body>
-    <header>
-        <!-- Seu cabeçalho aqui -->
-    </header>
 
-    <main>
-        <section id="Adicionar Piloto" style="font-size: 24px;">
-            <h2>Adicionar Novo Piloto</h2>
-            
-            <form action="processar_adicao.php" method="post">
-                <label for="nome">Nome do Piloto:</label>
-                <input type="text" id="nome" name="nome" required><br>
+<h2>Adicionar Piloto</h2>
 
-                <label for="equipe">Equipe:</label>
-                <input type="text" id="equipe" name="equipe" required><br>
+<form  method="post">
+  ID Pilotos:<br>
+  <input type="text" name="id_pilotos">
+  <br>
+  Nome:<br>
+  <input type="text" name="nome">
+  <br>
+  Data de Nascimento:<br>
+  <input type="text" name="data_nascimento">
+  <br>
+  Nacionalidade:<br>
+  <input type="text" name="nacionalidade">
+  <br>
+  Foto:<br>
+  <input type="file" name="foto">
+  <br>
+  <br><br>
+  <input type="submit" value="Adicionar Piloto">
+</form>
+<form action="pagina_admin.php">
+    <button type="submit">Voltar</button>
 
-                <label for="numero">Número:</label>
-                <input type="text" id="numero" name="numero" required><br>
-
-                <label for="bandeira">Bandeira (Código do País):</label>
-                <input type="text" id="bandeira" name="bandeira" required><br>
-
-                <label for="nacionalidade">Nacionalidade:</label>
-                <input type="text" id="nacionalidade" name="nacionalidade" required><br>
-
-                <label for="imagem">URL da Imagem:</label>
-                <input type="text" id="imagem" name="imagem" required><br>
-
-                <label for="descricao">Descrição:</label>
-                <textarea id="descricao" name="descricao" required></textarea><br>
-
-                <button type="submit">Adicionar Piloto</button>
-            </form>
-        </section>
-    </main>
-
-    <footer>
-        &copy; 2023 Fórmula 1
-    </footer>
 </body>
 </html>
