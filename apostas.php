@@ -1,46 +1,50 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Apostas Fórmula 1</title>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
-<header>
-        <div id="logo"> <a href="index.php"></a>
-            
 
-            <a href="index1.php"><img src="./image/PK_white.png" alt="" width="100"> <h1>Fórmula1Passionados</h1></a>
+<body>
+    <header>
+        <div id="logo"> <a href="index.php"></a>
+
+
+            <a href="index1.php"><img src="./image/PK_white.png" alt="" width="100">
+                <h1>Fórmula1Passionados</h1>
+            </a>
         </div>
         <div id="menu">
             <nav>
-            <ul class="nav-list">
-                    <li >
+                <ul class="nav-list">
+                    <li>
                         <a href="index1.php">Página Inicial</a>
                     </li>
-                    <li >
-                        <a href="equipas.php" >Equipas</a>
+                    <li>
+                        <a href="equipas.php">Equipas</a>
                     </li>
                     <li>
                         <a href="pilotos.php">Pilotos</a>
                     </li>
-                    <li >
+                    <li>
                         <a href="circuitos.php">Circuitos</a>
                     </li>
                     <li class="first current_page_item">
-                        <a href="apostas.php" >Apostas</a>
+                        <a href="apostas.php">Apostas</a>
                     </li>
                     <li>
                         <a href="perfil.php">Sair</a>
                     </li>
                 </ul>
-            
+
             </nav>
     </header>
 
     <main>
-        
+
         <section id="apostasCorrida">
             <h2>Apostas na Próxima Corrida</h2>
             <form id="formApostas" method="POST" action="apostas_send.php">
@@ -70,45 +74,47 @@
                     <option value="Carlos Sainz">Carlos Sainz</option>
                     <!-- Adicione mais pilotos conforme necessário -->
                 </select>
-                
-              <button>
-                   <span class="circle1"></span>
-                   <span class="circle2"></span>
-                   <span class="circle3"></span>
-                   <span class="circle4"></span>
-                   <span class="circle5"></span>
-                   <span class="text">Apostar</span>
-              </button>
-              
+
+                <button>
+                    <span class="circle1"></span>
+                    <span class="circle2"></span>
+                    <span class="circle3"></span>
+                    <span class="circle4"></span>
+                    <span class="circle5"></span>
+                    <span class="text">Apostar</span>
+                </button>
+
             </form>
-        
+
         </section>
 
         <section id="noticiaComVideo">
             <div class="coluna-video">
-                <h2>Vídeo em Destaque</h2>
-                <div class="video">
-                    <iframe width="560" height="315" src="https://www.formula1.com/en/latest/video.race-highlights-2023-japanese-grand-prix.1777902388988699618.html" frameborder="0" allowfullscreen></iframe>
-                </div>
+                <h2>Ultima corrida do ano</h2>
+                <iframe width="590" height="360" src="https://www.youtube.com/embed/9Z6rtYo1qBU" frameborder="0"
+                    allowfullscreen></iframe>
             </div>
             <div class="coluna-noticia">
                 <h2>Últimas Notícias</h2>
                 <article>
                     <h3>Título da Notícia</h3>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula dui eu lectus consequat, nec blandit justo volutpat. Cras nec lacinia libero.</p>
-                    <p>Leia mais <a href="https://www.formula1.com/en/latest/article.we-want-him-in-the-car-next-year-vowles-says-williams-want-sargeant-to.5SpN1ckubMYRmcPftJ1HUa.html">aqui</a>.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula dui eu lectus consequat,
+                        nec blandit justo volutpat. Cras nec lacinia libero.</p>
+                    <p>Leia mais <a
+                            href="https://www.formula1.com/en/latest/article.we-want-him-in-the-car-next-year-vowles-says-williams-want-sargeant-to.5SpN1ckubMYRmcPftJ1HUa.html">aqui</a>.
+                    </p>
                 </article>
                 <!-- Adicione mais notícias conforme necessário -->
             </div>
         </section>
-        
-        
-        
+
+
+
     </main>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script>
+    <script>
     // Função para embaralhar aleatoriamente um array
     function shuffleArray(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -202,7 +208,7 @@
             })
             .catch(error => console.error('Erro:', error));
     });
-</script>
+    </script>
 
 
 
@@ -210,4 +216,5 @@
         &copy; 2023 Fórmula 1
     </footer>
 </body>
+
 </html>

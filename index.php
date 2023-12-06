@@ -7,15 +7,19 @@
     <meta name="description" content="Bem-vindo à Fórmula1Passionados" />
     <meta name="keywords" content="Fórmula 1, Automobilismo, Corrida" />
 
-    <title>Bem-vindo à Fórmula1Passionados</title>
-    <link rel="stylesheet" type="text/css" href="style.css.l.css" />
+    <title>Bem-vindo à Fórmula1 Passionados</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 
 <body>
 
 <header>
-        <div id="logo"> <a href="index.php"><img src="./image/PK_white.png" alt="" width="100"></a>
-            
+<div id="logo">
+            <a href="index1.php"><img src="./image/PK_white.png" alt="" width="100">
+                <h1>Fórmula1Passionados</h1>
+            </a>
+
+        </div>            
 
            
         </div>
@@ -25,10 +29,18 @@
                     <li class="first current_page_item">
                         <a href="index.php">Página Inicial</a>
                     </li>
+                    <li>
+                        <a href="equipas1.php">Equipas</a>
+                    </li>
+                    <li>
+                        <a href="pilotos1.php">Pilotos</a>
+                    </li>
+                    <li>
+                        <a href="circuitos1.php">Circuitos</a>
+                    </li>
                     <li >
                         <a href="loginn.php">Login</a>
                     </li>
-                   
                 </ul>
             </nav>
     </header>

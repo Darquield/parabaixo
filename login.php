@@ -48,12 +48,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             exit();
         } else {
-            echo "Erro: Senha incorreta";
+            
+            echo "<script>alert('Senha incorreta. Tente novamente.'); window.location.href='loginn.php'</script>";
+
         }
     } else {
         // Login falhou
         $_SESSION["login_erro"] = "Email ou senha incorretos";
-        header("Location: login.php"); // Redirecionar de volta para a página de login
+        header("Location: loginn.php"); // Redirecionar de volta para a página de login
         exit();
     }
 }

@@ -11,7 +11,6 @@ $username = "Wagner";
 $password = "123";
 $dbname = "pap";
 
-
 // Criar uma conexão com o banco de dados
 $conn = new mysqli($servername, $username, $password, $dbname);
 
@@ -34,10 +33,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dataAposta = date("Y-m-d H:i:s"); // Obtém a data e hora atuais
 
     // Insira os dados na tabela do banco de dados
-    $sql = "INSERT INTO apostas (nome_usuario, piloto_escolhido, data_aposta) VALUES ('{$row['nome']}', '$pilotoEscolhido', '$dataAposta')";
+    $sql = "INSERT INTO apostas (nome_usuario, piloto_escolhido, data_aposta, id_utilizador) VALUES ('{$row['nome']}', '$pilotoEscolhido', '$dataAposta', $user_id)";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Aposta registrada com sucesso!";
+        echo "<script>alert('Aposta registrada com sucesso.'); window.location.href='Apostas.php'</script>";
     } else {
         echo "Erro ao registrar a aposta: " . $conn->error;
     }

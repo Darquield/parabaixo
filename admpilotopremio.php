@@ -19,7 +19,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_premio = $_POST['id_premios'];
 
     // Inserir os dados no banco de dados
-    $sql = "INSERT INTO piloto_premio (id_pilotos, id_premio)
+    $sql = "INSERT INTO premio_piloto (id_pilotos, id_premio)
     VALUES ('$id_pilotos', '$id_premio')";
 
     if ($conn->query($sql) === TRUE) {

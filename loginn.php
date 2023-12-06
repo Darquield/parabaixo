@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css.l.css">
     <title>Login</title>
+    
 </head>
 <body>
     <header>
@@ -28,7 +29,7 @@
     </header>
     
     <div class="login-box">
-        <p>Login</p>
+        <p>Iniciar Sessão</p>
         <form method="POST" action="login.php">
           <div class="user-box">
             <input required="" name="email" type="text">
@@ -36,14 +37,17 @@
           </div>
           <div class="user-box">
             <input required="" name="senha" type="password">
-            <label>Password</label>
+            <label>Palavra Passe</label>
           </div>
           <input type="submit" value="submit">
+          
         </form>
-        <p>Don't have an account? <a href="registroo.php" class="a2">Sign up!</a></p>
+        <p>Já tens conta? <a href="registroo.php" class="a2">Faça o Registro!</a></p>
         <li><a href="loginn.php">Login</a></li>
 
       </div>
+      
+    
       
 </body>
 </html>

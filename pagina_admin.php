@@ -4,7 +4,7 @@ session_start();
 
 // Verificar se o usuário está logado e se é um administrador
 if (!(isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] && isset($_SESSION['admin']) && $_SESSION['admin'])) {
-    header("Location: login.php"); // Redirecionar de volta para a página de login se o usuário não estiver logado como administrador
+    header("Location: loginn.php"); // Redirecionar de volta para a página de login se o usuário não estiver logado como administrador
     exit();
 }
 
@@ -17,6 +17,8 @@ if (!(isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] && isset
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página do Administrador</title>
     <link rel="stylesheet" type="text/css" href="admin.css">
+    
+
 </head>
 <body>
     
@@ -63,6 +65,6 @@ if (!(isset($_SESSION['usuario_logado']) && $_SESSION['usuario_logado'] && isset
     <a href="admequipapremio.php">Ir para a página de Equipas</a>
     <!-- Adicione o conteúdo da página do administrador aqui -->
 
-    <a href="logout.php">Sair</a> <!-- Um link para a página de logout -->
-</body>
+    <a href="logout.php">Sair</a> 
+    <a href="index1.php">Ir ao site</a> 
 </html>

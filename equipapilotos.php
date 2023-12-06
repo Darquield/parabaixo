@@ -1,5 +1,3 @@
-
-
 <?php
 $servername = "localhost";
 $username = "Wagner";
@@ -37,22 +35,24 @@ $conn->close();
 
 <!DOCTYPE html>
 <html>
+
 <body>
 
-<h2>Adicionar Equipa Piloto</h2>
+    <h2>Adicionar Equipa Piloto</h2>
 
-<form action="add_equipa_piloto.php" method="post">
-  ID Equipa Piloto:<br>
-  <input type="text" name="id_equipa_piloto">
-  <br>
-  ID Equipas:<br>
-  <input type="text" name="id_equipas">
-  <br>
-  ID Pilotos:<br>
-  <input type="text" name="id_pilotos">
-  <br><br>
-  <input type="submit" value="Adicionar">
-</form>
+    <form action="add_equipa_piloto.php" method="post">
+        ID Equipa Piloto:<br>
+        <input type="text" name="id_equipa_piloto">
+        <br>
+        ID Equipas:<br>
+        <input type="text" name="id_equipas">
+        <br>
+        ID Pilotos:<br>
+        <input type="text" name="id_pilotos">
+        <br><br>
+        <input type="submit" value="Adicionar">
+    </form>
 
 </body>
+
 </html>

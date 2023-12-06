@@ -47,7 +47,7 @@ if (isset($_GET['id'])) {
     <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
-
+    
 <h2>Editar Usuário</h2>
 
 <form method="post">

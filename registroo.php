@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.w.css">
-    <title>Registro</title>
+    <title>Registo</title>
 </head>
 <body>
     <div class="login-box"> <!-- Aplicando a classe login-box ao elemento principal -->
         <form action="registro.php" method="POST">
-            <p>Sign up</p>
+            <p>Registar-se</p>
             <div class="user-box">
                 <input type="text" name="nome" placeholder="Full Name">
                 <label>Nome Completo</label> <!-- Adicionei uma label para manter a estrutura do CSS -->
@@ -26,9 +26,9 @@
                 <input type="password" name="confirmaSenha" placeholder="Confirmar Password">
                 <label>Confirmar Senha</label>
             </div>
-            <button type="submit">Sign up</button>
+            <button type="submit">Registar</button>
         </form>
-        <a href="loginn.php" class="a2">Have an account?</a>
+        <a href="loginn.php" class="a2">Já tens conta?</a>
     </div>
 </body>
 </html>

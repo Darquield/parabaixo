@@ -5,7 +5,7 @@ session_start();
 // Verifique se o usuário está autenticado (verifique sua lógica de autenticação)
 if (!isset($_SESSION['user_id'])) {
     // Redirecione para a página de login se o usuário não estiver autenticado
-    header("Location: login.php");
+    header("Location: loginn.php");
     exit();
 }
 
@@ -55,9 +55,9 @@ $conn->close();
                     <input type="email" name="email" id="email" value="<?php echo $row['email'] ?>">
                 </div>
             </div>
-            <button type="submit">Salvar</button> 
+            <button type="submit">Guardar</button> 
             <div class="voltar">
-        <a href="index1.php" onclick="history.go(-1); return false;">Voltar</a>
+        <a href="perfil.php" onclick="history.go(-1); return false;">Voltar</a>
     </div>
         </form>
     </div>

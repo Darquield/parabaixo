@@ -40,6 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($conn->query($sql) === TRUE) {
         // Redirecione de volta para a página de perfil com uma mensagem de sucesso
         header("Location: prefile.php?mensagem=Perfil atualizado com sucesso");
+       
         
     } else {
         // Se houver um erro na consulta SQL, você pode redirecionar de volta com uma mensagem de erro

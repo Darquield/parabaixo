@@ -18,14 +18,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $id_premio = $_POST['id_premio'];
     $descricao = $_POST['descricao'];
     $data = $_POST['data'];
+    
 
     // Inserir os dados no banco de dados
     $sql = "INSERT INTO premio (id_premio, descricao, data)
     VALUES ('$id_premio', '$descricao', '$data')";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Registro inserido com sucesso";
+        echo "<script>alert('Registro inserido com sucesso.'); window.location.href='admpremio.php'</script>";
+
+  
     } else {
+       
         echo "Erro ao inserir registro: " . $conn->error;
     }
 }

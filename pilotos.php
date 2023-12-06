@@ -9,10 +9,10 @@
 </head>
 <body>
 <header>
-        <div id="logo">
-            <img src="./image/PK_white.png" alt="" width="100">
+<div id="logo"> <a href="index.php"></a>
+            
 
-            <a href="#"><h1>Fórmula1Passionados</h1></a>
+            <a href="index1.php"><img src="./image/PK_white.png" alt="" width="100"> <h1>Fórmula1Passionados</h1></a>
         </div>
         <div id="menu">
             <nav>

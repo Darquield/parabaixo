@@ -16,6 +16,19 @@ if ($conn->connect_error) {
 $sql = "SELECT * FROM equipa_premio";
 $result = $conn->query($sql);
 
+// Inicializa a variável de pesquisa
+$search = '';
+
+// Verifica se o formulário foi enviado
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $search = $_POST["search"];
+    $search = mysqli_real_escape_string($conn, $search);
+
+    // Consulta SQL para selecionar os dados da tabela equipa_premio com base na pesquisa
+    $sql = "SELECT * FROM equipa_premio WHERE id_premio LIKE '%$search%' OR id_equipas LIKE '%$search%'";
+    $result = $conn->query($sql);
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +66,28 @@ $result = $conn->query($sql);
   tr:hover {
     background-color: #ddd;
   }
-  
+   /* Estilo para o formulário de pesquisa */
+   form {
+        margin-bottom: 20px;
+    }
+
+    input[type="text"] {
+        padding: 8px;
+        width: 200px;
+    }
+
+    button {
+        padding: 8px 12px;
+        background-color: #ff0000;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #45a049;
+      }
+
 </style>
 </head>
 
@@ -61,10 +95,16 @@ $result = $conn->query($sql);
 
 <h2>Dados da Tabela Equipa-Premio</h2>
 
+  <!-- Formulário de pesquisa -->
+  <form method="post" action="">
+        <input type="text" name="search" placeholder="Pesquisar">
+        <button type="submit">Pesquisar</button>
+    </form>
+
 <table>
   <tr>
-    <th> ID Prêmio</th>
-    <th>ID Equipas</th>
+    <th> Prêmio</th>
+    <th>Equipa Vencedora</th>
   </tr>
   <?php
   if ($result && $result->num_rows > 0) {

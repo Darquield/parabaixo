@@ -19,24 +19,21 @@
             <nav>
                 <ul class="nav-list">
                     <li>
-                        <a href="index1.php">Página Inicial</a>
+                        <a href="index.php">Página Inicial</a>
                     </li>
                     <li>
-                        <a href="equipas.php">Equipas</a>
+                        <a href="equipas1.php">Equipas</a>
                     </li>
                     <li>
-                        <a href="pilotos.php">Pilotos</a>
+                        <a href="pilotos1.php">Pilotos</a>
                     </li>
                     <li class="first current_page_item">
-                        <a href="circuitos.php">Circuitos</a>
+                        <a href="circuitos1.php">Circuitos</a>
                     </li>
-                    <li>
-                        <a href="Apostas.php">Apostas</a>
+                    <li >
+                        <a href="loginn.php">Login</a>
                     </li>
-                    <li>
-                        <a href="perfil.php">Sair</a>
-                    </li>
-                </ul>
+                    
             </nav>
     </header>
     <main>

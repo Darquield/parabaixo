@@ -13,8 +13,17 @@ if ($conn->connect_error) {
 }
 
 // Consulta SQL para selecionar os dados da tabela piloto_premio
-$sql = "SELECT * FROM piloto_premio";
+$sql = "SELECT * FROM premio_piloto";
 $result = $conn->query($sql);
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $search = $_POST["search"];
+  $search = mysqli_real_escape_string($conn, $search);
+
+  // Consulta SQL para selecionar os dados da tabela piloto_premio com base na pesquisa
+  $sql = "SELECT * FROM premio_piloto WHERE id_pilotos LIKE '%$search%' OR id_premio LIKE '%$search%'";
+  $result = $conn->query($sql);
+}
 
 ?>
 
@@ -54,10 +63,36 @@ $result = $conn->query($sql);
   tr:hover {
     background-color: #ddd;
   }
+   /* Estilo para o formulário de pesquisa */
+   form {
+            margin-bottom: 20px;
+        }
+
+        input[type="text"] {
+            padding: 8px;
+            width: 200px;
+        }
+
+        button {
+            padding: 8px 12px;
+            background-color: #ff0000;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
 </style>
 </head>
 
 <h2>Dados da Tabela Piloto-Premio</h2>
+ <!-- Formulário de pesquisa -->
+ <form method="post" action="">
+        <input type="text" name="search" >
+        <button type="submit">Pesquisar</button>
+    </form>
 
 <table>
   <tr>

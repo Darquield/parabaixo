@@ -31,7 +31,7 @@ $result = $conn->query($select_query);
 </head>
 <body>
 
-<h2>Lista de Usuários</h2>
+<h2>Lista dos utilizadores</h2>
 
 <table>
     <tr>
@@ -47,7 +47,8 @@ $result = $conn->query($select_query);
             echo "<td>" . $row["id"] . "</td>";
             echo "<td>" . $row["nome"] . "</td>";
             echo "<td>" . $row["email"] . "</td>";
-            echo "<td><a href='edit.php?id=" . $row["id"] . "'>Editar</a> | <a href='?delete_id=" . $row["id"] . "'>Excluir</a></td>";
+            echo "<td><a href='edit.php?id=" . $row["id"] . "'>Editar</a> | <a href='?delete_id=" . $row["id"] .
+             "'>Excluir</a></td>";
             echo "</tr>";
         }
     } else {
@@ -57,7 +58,6 @@ $result = $conn->query($select_query);
 </table>
 <form action="pagina_admin.php">
     <button type="submit">Voltar</button>
-
 </body>
 </html>
 
