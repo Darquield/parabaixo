@@ -12,12 +12,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["adicionar_piloto"])) {
     $numeroPiloto = $_POST["numero_piloto"];
     $bandeiraPiloto = $_POST["bandeira_piloto"];
     $nacionalidadePiloto = $_POST["nacionalidade_piloto"];
-    $imagemPiloto = $_POST["imagem_piloto"];
     $descricaoPiloto = $_POST["descricao_piloto"];
 
+    // Processa o upload da foto
+    $fotoPiloto = null;
+    if ($_FILES["foto_piloto"]["error"] == UPLOAD_ERR_OK) {
+        $fotoPiloto = basename($_FILES["foto_piloto"]["name"]);
+        move_uploaded_file($_FILES["foto_piloto"]["tmp_name"], "/var/www/html/parabaixo/fotos_pilotos/" . $fotoPiloto);
+    }
+
+    // Processa o upload da bandeira
+    $bandeiraNome = null;
+    
+    if ($_FILES["bandeira_piloto"]["error"] == UPLOAD_ERR_OK) {
+        $bandeiraNome = basename($_FILES["bandeira_piloto"]["name"]);
+        move_uploaded_file($_FILES["bandeira_piloto"]["tmp_name"], "/var/www/html/parabaixo/fotos_bandeiras/" . $bandeiraNome);
+    }
+
     // Insere os dados na tabela "pilotos"
-    $sql = "INSERT INTO pilotos (nome, equipe, numero, bandeira, nacionalidade, imagem, descricao) 
-            VALUES ('$nomePiloto', '$equipePiloto', '$numeroPiloto', '$bandeiraPiloto', '$nacionalidadePiloto', '$imagemPiloto', '$descricaoPiloto')";
+    $sql = "INSERT INTO pilotos (nome, equipe, numero, bandeira, nacionalidade, descricao, foto) 
+        VALUES ('$nomePiloto', '$equipePiloto', '$numeroPiloto', '$bandeiraNome', '$nacionalidadePiloto', '$descricaoPiloto', '$fotoPiloto')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Novo piloto adicionado com sucesso.";
@@ -35,9 +49,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["adicionar_equipa"])) {
     $pilotoPrincipal = $_POST["piloto_principal"];
     $pilotoSecundario = $_POST["piloto_secundario"];
 
+    $fotoEquipa = null;
+
+    if (isset($_FILES["foto_equipa"]) && $_FILES["foto_equipa"]["error"] == UPLOAD_ERR_OK) {
+        $fotoEquipa = basename($_FILES["foto_equipa"]["name"]);
+        move_uploaded_file($_FILES["foto_equipa"]["tmp_name"], "/var/www/html/parabaixo/fotos_equipas/" . $fotoEquipa);
+    }
+
     // Insere os dados na tabela "equipas"
-    $sql = "INSERT INTO equipas (nome, data_criada, mail, descricao, piloto_principal, piloto_secundario) 
-            VALUES ('$nomeEquipa', '$dataCriada', '$mail', '$descricao', '$pilotoPrincipal', '$pilotoSecundario')";
+    $sql = "INSERT INTO equipas (nome, data_criada, mail, descricao, piloto_principal, piloto_secundario, foto) 
+            VALUES ('$nomeEquipa', '$dataCriada', '$mail', '$descricao', '$pilotoPrincipal', '$pilotoSecundario', '$fotoEquipa')";
 
     if ($conn->query($sql) === TRUE) {
         echo "Nova equipa adicionada com sucesso.";
@@ -46,8 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["adicionar_equipa"])) {
     }
 }
 
+
 // Consulta para obter todos os pilotos
-$queryPilotos = "SELECT id_pilotos, nome, equipe, numero, bandeira, nacionalidade, imagem, descricao FROM pilotos";
+$queryPilotos = "SELECT id_pilotos, nome, equipe, numero, bandeira, nacionalidade, descricao FROM pilotos";
 $resultPilotos = $conn->query($queryPilotos);
 
 // Consulta para obter todos as equipas
@@ -69,25 +91,26 @@ $conn->close();
 
 <h2>Adicionar Piloto</h2>
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
     Nome: <input type="text" name="nome_piloto" required><br>
     Equipe: <input type="text" name="equipe_piloto" required><br>
     Número: <input type="number" name="numero_piloto" required><br>
-    Bandeira: <input type="text" name="bandeira_piloto" required><br>
+    Bandeira: <input type="file" name="bandeira_piloto" accept="image/*" required><br>
     Nacionalidade: <input type="text" name="nacionalidade_piloto" required><br>
-    Imagem: <input type="text" name="imagem_piloto" required><br>
+    Foto: <input type="file" name="foto_piloto" accept="image/*" required><br>
     Descrição: <textarea name="descricao_piloto" rows="4" cols="50" required></textarea><br>
     <input type="submit" name="adicionar_piloto" value="Adicionar Piloto">
 </form>
 
+
 <h2>Adicionar Equipa</h2>
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" enctype="multipart/form-data">
     Nome Equipa: <input type="text" name="nome_equipa" required><br>
     Data Criada: <input type="date" name="data_criada" required><br>
     Mail: <input type="email" name="mail" required><br>
     Descrição: <textarea name="descricao" rows="4" cols="50" required></textarea><br>
-
+    Foto: <input type="file" name="foto_equipa" accept="image/*" required><br>
     Piloto Principal:
     <select name="piloto_principal">
         <?php
@@ -110,6 +133,7 @@ $conn->close();
 
     <input type="submit" name="adicionar_equipa" value="Adicionar Equipa">
 </form>
+
 
 
 

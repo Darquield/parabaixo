@@ -1,7 +1,7 @@
 <?php 
 include_once('conexao.php');
 
-$queryEquipas = "SELECT e.id_equipas, e.nome, e.descricao, p1.nome AS piloto_principal, p2.nome AS piloto_secundario
+$queryEquipas = "SELECT e.id_equipas, e.nome, e.descricao, e.foto, p1.nome AS piloto_principal, p2.nome AS piloto_secundario
                  FROM equipas e
                  LEFT JOIN pilotos p1 ON e.piloto_principal = p1.id_pilotos
                  LEFT JOIN pilotos p2 ON e.piloto_secundario = p2.id_pilotos";
@@ -78,6 +78,7 @@ if ($resultEquipas->num_rows > 0) {
         echo "<p>" . $row['descricao'] . "</p>";
         echo "<p>Piloto Principal: " . $row['piloto_principal'] . "</p>";
         echo "<p>Piloto Secundário: " . $row['piloto_secundario'] . "</p>";
+        echo '<img width="200" src="fotos_equipas/' . $row['foto'] . '">';
     }
     echo "</ul>";
 } else {

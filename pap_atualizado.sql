@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Dec 06, 2023 at 10:16 PM
+-- Generation Time: Dec 07, 2023 at 06:20 PM
 -- Server version: 8.0.35-0ubuntu0.20.04.1
 -- PHP Version: 8.1.25
 
@@ -60,16 +60,18 @@ CREATE TABLE `equipas` (
   `mail` text COLLATE utf8mb4_general_ci,
   `descricao` longtext COLLATE utf8mb4_general_ci NOT NULL,
   `piloto_principal` int NOT NULL,
-  `piloto_secundario` int NOT NULL
+  `piloto_secundario` int NOT NULL,
+  `foto` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `equipas`
 --
 
-INSERT INTO `equipas` (`id_equipas`, `nome`, `data_criada`, `mail`, `descricao`, `piloto_principal`, `piloto_secundario`) VALUES
-(5, 'wagnerthebest', '1232-11-11', 'wagner@gmaiol.com', 'wagnerteam a melhore equipa de sempree', 14, 13),
-(6, 'equipabonecos', '2005-09-09', 'tanjilk@gm.com', 'bonecadas e na equipa bbonecis', 15, 14);
+INSERT INTO `equipas` (`id_equipas`, `nome`, `data_criada`, `mail`, `descricao`, `piloto_principal`, `piloto_secundario`, `foto`) VALUES
+(12, 'teste', '1212-12-31', 'tanjilk@gm.com', 'teste', 34, 35, 'qa.png'),
+(13, 'equipamanel', '2005-11-11', 'manel@gm', 'trfyurtrtyurutrftuyvfughb lj', 34, 37, 'ML.png'),
+(14, 'equipaboaaaaa', '7878-07-08', '89@89', 'oihyiuhlhjkhjklhnjklhnlkj', 38, 35, 'Rb.jpg');
 
 -- --------------------------------------------------------
 
@@ -120,18 +122,20 @@ CREATE TABLE `pilotos` (
   `numero` int NOT NULL,
   `bandeira` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
   `nacionalidade` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `imagem` varchar(255) COLLATE utf8mb4_general_ci NOT NULL,
-  `descricao` text COLLATE utf8mb4_general_ci NOT NULL
+  `descricao` text COLLATE utf8mb4_general_ci NOT NULL,
+  `foto` varchar(255) COLLATE utf8mb4_general_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pilotos`
 --
 
-INSERT INTO `pilotos` (`id_pilotos`, `nome`, `equipe`, `numero`, `bandeira`, `nacionalidade`, `imagem`, `descricao`) VALUES
-(13, 'Lewis Hamilton', 'Mercedes', 44, 'Angola', 'Inglesa', 'lh.44', 'sdsdsdsd'),
-(14, 'Wanger piloto', 'ferrari', 69, 'china', 'chines', 'china.png', 'wagner o piloto da china'),
-(15, 'tanjil', 'mercedes', 2, 'portugale', 'portugues', 'l.png', 'tanjil piloto teste');
+INSERT INTO `pilotos` (`id_pilotos`, `nome`, `equipe`, `numero`, `bandeira`, `nacionalidade`, `descricao`, `foto`) VALUES
+(34, 'tanjil', '1', 1, 's.png', 'ta', 'te', 'zhou.jpeg'),
+(35, 'wagner2', 'wagnerteam', 4, 'j.png', 'japones', 'bottttasssssssssss....', 'bottas.jpeg'),
+(36, 'tanjil', 'mercedes', 65, 'pb.png', 'china', 'teste123', 'yuki.jpeg'),
+(37, 'manel', 'mercedes', 87687, 'ta.png', 'portugues', 'manel ganda piloto', 'Ronnie-Dean-Coleman-4.jpg'),
+(38, 'joao', 'ferrari', 69, 'qaa.png', 'jamaicano', 'fiiiiiiiiiii', 'pl.jpg');
 
 -- --------------------------------------------------------
 
@@ -436,7 +440,47 @@ INSERT INTO `quipas` (`id_equipas`, `Equipa`, `Descricao`, `PilotoPrincipal`, `S
 (969, 'Haas F1 Team', 'Haas Formula LLC, atualmente competindo como MoneyGram Haas F1 Team, é uma equipe de Fórmula 1 estabelecida por Gene Haas em abril de 2014. A equipe planejou sua estreia no início da temporada de 2015, mas optou por adiar a sua entrada para a temporada de 2016.', 'Kevin Magnussen', 'Nico Hulkenberg', 'image/haas.jpg', 'image/h.jpg', 'image/ha.jpg');
 INSERT INTO `quipas` (`id_equipas`, `Equipa`, `Descricao`, `PilotoPrincipal`, `SegundoPiloto`, `Imagem1`, `Imagem2`, `Imagem3`) VALUES
 (970, 'Alfa Romeo F1 Team', 'A marca Alfa Romeo retornou para a Fórmula 1 na temporada de 2018 como patrocinador título da equipe Sauber.', 'Valtteri Bottas', 'Zhou Guanyu', 'image/loalfa.jpg', 'image/bz.jpg', 'image/c43.jpg'),
-(971, 'Alfa Tauri F1 Team', 'O Alpine F1 Team representa a Renault na Fórmula 1.', 'Daniel Ricciardo', 'Yuki Tsunoda', 'image/alfa.jpg', 'image/dt.jpg', 'image/alf.jpg');
+(971, 'Alfa Tauri F1 Team', 'O Alpine F1 Team representa a Renault na Fórmula 1.', 'Daniel Ricciardo', 'Yuki Tsunoda', 'image/alfa.jpg', 'image/dt.jpg', 'image/alf.jpg'),
+(972, 'Mercedes', 'A Equipe Mercedes é uma das equipes mais bem-sucedidas da Fórmula 1, com vários títulos mundiais.', 'Lewis Hamilton', 'George Russell', 'image/MR.jpg', 'image/LHGR.jpg', 'image/44.jpg'),
+(973, 'Red Bull Racing', 'A Red Bull Racing é conhecida por sua abordagem agressiva nas corridas de Fórmula 1.', 'Max Verstappen', 'Sergio Pérez', 'image/Rb.jpg', 'image/du.jpg', 'image/rb18-1.jpg'),
+(974, 'Scuderia Ferrari', 'A Scuderia Ferrari é uma das equipes mais icônicas e históricas da Fórmula 1.', 'Charles Leclerc', 'Carlos Sainz Jr.', 'image/ff.jpg', 'image/CC.jpg', 'image/f23.jpeg'),
+(975, 'McLaren F1 Team', 'A McLaren F1 Team é conhecida por sua tradição e inovação no esporte.', 'Lando Norris', 'Oscar Piastri', 'image/ML.png', 'image/pl.jpg', 'image/ll.jpg'),
+(976, 'Aston Martin Cognizant Formula One Team', 'A equipe Aston Martin retorna à Fórmula 1 com uma nova identidade.', 'Fernando Alonso', 'Lance Stroll', 'image/astom.jpg', 'image/FL.jpg', 'image/ast.jpeg'),
+(977, 'Alpine F1 Team', 'O Alpine F1 Team representa a Renault na Fórmula 1.', 'Pierre Gasly', 'Esteban Ocon', 'image/alp.jpg', 'image/og.jpg', 'image/ap.jpg'),
+(978, 'Willians F1 Team', 'A Williams Grand Prix Engineering Limited, competindo como Williams Racing, é uma equipe e construtor de Fórmula 1 fundada por Frank Williams e Patrick Head.', 'Alexandre Albon', 'Logan Sargento', 'image/w.jpg', 'image/al.jpg', 'image/wi.jpg'),
+(979, 'Haas F1 Team', 'Haas Formula LLC, atualmente competindo como MoneyGram Haas F1 Team, é uma equipe de Fórmula 1 estabelecida por Gene Haas em abril de 2014. A equipe planejou sua estreia no início da temporada de 2015, mas optou por adiar a sua entrada para a temporada de 2016.', 'Kevin Magnussen', 'Nico Hulkenberg', 'image/haas.jpg', 'image/h.jpg', 'image/ha.jpg'),
+(980, 'Alfa Romeo F1 Team', 'A marca Alfa Romeo retornou para a Fórmula 1 na temporada de 2018 como patrocinador título da equipe Sauber.', 'Valtteri Bottas', 'Zhou Guanyu', 'image/loalfa.jpg', 'image/bz.jpg', 'image/c43.jpg'),
+(981, 'Alfa Tauri F1 Team', 'O Alpine F1 Team representa a Renault na Fórmula 1.', 'Daniel Ricciardo', 'Yuki Tsunoda', 'image/alfa.jpg', 'image/dt.jpg', 'image/alf.jpg'),
+(982, 'Mercedes', 'A Equipe Mercedes é uma das equipes mais bem-sucedidas da Fórmula 1, com vários títulos mundiais.', 'Lewis Hamilton', 'George Russell', 'image/MR.jpg', 'image/LHGR.jpg', 'image/44.jpg'),
+(983, 'Red Bull Racing', 'A Red Bull Racing é conhecida por sua abordagem agressiva nas corridas de Fórmula 1.', 'Max Verstappen', 'Sergio Pérez', 'image/Rb.jpg', 'image/du.jpg', 'image/rb18-1.jpg'),
+(984, 'Scuderia Ferrari', 'A Scuderia Ferrari é uma das equipes mais icônicas e históricas da Fórmula 1.', 'Charles Leclerc', 'Carlos Sainz Jr.', 'image/ff.jpg', 'image/CC.jpg', 'image/f23.jpeg'),
+(985, 'McLaren F1 Team', 'A McLaren F1 Team é conhecida por sua tradição e inovação no esporte.', 'Lando Norris', 'Oscar Piastri', 'image/ML.png', 'image/pl.jpg', 'image/ll.jpg'),
+(986, 'Aston Martin Cognizant Formula One Team', 'A equipe Aston Martin retorna à Fórmula 1 com uma nova identidade.', 'Fernando Alonso', 'Lance Stroll', 'image/astom.jpg', 'image/FL.jpg', 'image/ast.jpeg'),
+(987, 'Alpine F1 Team', 'O Alpine F1 Team representa a Renault na Fórmula 1.', 'Pierre Gasly', 'Esteban Ocon', 'image/alp.jpg', 'image/og.jpg', 'image/ap.jpg'),
+(988, 'Willians F1 Team', 'A Williams Grand Prix Engineering Limited, competindo como Williams Racing, é uma equipe e construtor de Fórmula 1 fundada por Frank Williams e Patrick Head.', 'Alexandre Albon', 'Logan Sargento', 'image/w.jpg', 'image/al.jpg', 'image/wi.jpg'),
+(989, 'Haas F1 Team', 'Haas Formula LLC, atualmente competindo como MoneyGram Haas F1 Team, é uma equipe de Fórmula 1 estabelecida por Gene Haas em abril de 2014. A equipe planejou sua estreia no início da temporada de 2015, mas optou por adiar a sua entrada para a temporada de 2016.', 'Kevin Magnussen', 'Nico Hulkenberg', 'image/haas.jpg', 'image/h.jpg', 'image/ha.jpg'),
+(990, 'Alfa Romeo F1 Team', 'A marca Alfa Romeo retornou para a Fórmula 1 na temporada de 2018 como patrocinador título da equipe Sauber.', 'Valtteri Bottas', 'Zhou Guanyu', 'image/loalfa.jpg', 'image/bz.jpg', 'image/c43.jpg'),
+(991, 'Alfa Tauri F1 Team', 'O Alpine F1 Team representa a Renault na Fórmula 1.', 'Daniel Ricciardo', 'Yuki Tsunoda', 'image/alfa.jpg', 'image/dt.jpg', 'image/alf.jpg'),
+(992, 'Mercedes', 'A Equipe Mercedes é uma das equipes mais bem-sucedidas da Fórmula 1, com vários títulos mundiais.', 'Lewis Hamilton', 'George Russell', 'image/MR.jpg', 'image/LHGR.jpg', 'image/44.jpg'),
+(993, 'Red Bull Racing', 'A Red Bull Racing é conhecida por sua abordagem agressiva nas corridas de Fórmula 1.', 'Max Verstappen', 'Sergio Pérez', 'image/Rb.jpg', 'image/du.jpg', 'image/rb18-1.jpg'),
+(994, 'Scuderia Ferrari', 'A Scuderia Ferrari é uma das equipes mais icônicas e históricas da Fórmula 1.', 'Charles Leclerc', 'Carlos Sainz Jr.', 'image/ff.jpg', 'image/CC.jpg', 'image/f23.jpeg'),
+(995, 'McLaren F1 Team', 'A McLaren F1 Team é conhecida por sua tradição e inovação no esporte.', 'Lando Norris', 'Oscar Piastri', 'image/ML.png', 'image/pl.jpg', 'image/ll.jpg'),
+(996, 'Aston Martin Cognizant Formula One Team', 'A equipe Aston Martin retorna à Fórmula 1 com uma nova identidade.', 'Fernando Alonso', 'Lance Stroll', 'image/astom.jpg', 'image/FL.jpg', 'image/ast.jpeg'),
+(997, 'Alpine F1 Team', 'O Alpine F1 Team representa a Renault na Fórmula 1.', 'Pierre Gasly', 'Esteban Ocon', 'image/alp.jpg', 'image/og.jpg', 'image/ap.jpg'),
+(998, 'Willians F1 Team', 'A Williams Grand Prix Engineering Limited, competindo como Williams Racing, é uma equipe e construtor de Fórmula 1 fundada por Frank Williams e Patrick Head.', 'Alexandre Albon', 'Logan Sargento', 'image/w.jpg', 'image/al.jpg', 'image/wi.jpg'),
+(999, 'Haas F1 Team', 'Haas Formula LLC, atualmente competindo como MoneyGram Haas F1 Team, é uma equipe de Fórmula 1 estabelecida por Gene Haas em abril de 2014. A equipe planejou sua estreia no início da temporada de 2015, mas optou por adiar a sua entrada para a temporada de 2016.', 'Kevin Magnussen', 'Nico Hulkenberg', 'image/haas.jpg', 'image/h.jpg', 'image/ha.jpg'),
+(1000, 'Alfa Romeo F1 Team', 'A marca Alfa Romeo retornou para a Fórmula 1 na temporada de 2018 como patrocinador título da equipe Sauber.', 'Valtteri Bottas', 'Zhou Guanyu', 'image/loalfa.jpg', 'image/bz.jpg', 'image/c43.jpg'),
+(1001, 'Alfa Tauri F1 Team', 'O Alpine F1 Team representa a Renault na Fórmula 1.', 'Daniel Ricciardo', 'Yuki Tsunoda', 'image/alfa.jpg', 'image/dt.jpg', 'image/alf.jpg'),
+(1002, 'Mercedes', 'A Equipe Mercedes é uma das equipes mais bem-sucedidas da Fórmula 1, com vários títulos mundiais.', 'Lewis Hamilton', 'George Russell', 'image/MR.jpg', 'image/LHGR.jpg', 'image/44.jpg'),
+(1003, 'Red Bull Racing', 'A Red Bull Racing é conhecida por sua abordagem agressiva nas corridas de Fórmula 1.', 'Max Verstappen', 'Sergio Pérez', 'image/Rb.jpg', 'image/du.jpg', 'image/rb18-1.jpg'),
+(1004, 'Scuderia Ferrari', 'A Scuderia Ferrari é uma das equipes mais icônicas e históricas da Fórmula 1.', 'Charles Leclerc', 'Carlos Sainz Jr.', 'image/ff.jpg', 'image/CC.jpg', 'image/f23.jpeg'),
+(1005, 'McLaren F1 Team', 'A McLaren F1 Team é conhecida por sua tradição e inovação no esporte.', 'Lando Norris', 'Oscar Piastri', 'image/ML.png', 'image/pl.jpg', 'image/ll.jpg'),
+(1006, 'Aston Martin Cognizant Formula One Team', 'A equipe Aston Martin retorna à Fórmula 1 com uma nova identidade.', 'Fernando Alonso', 'Lance Stroll', 'image/astom.jpg', 'image/FL.jpg', 'image/ast.jpeg'),
+(1007, 'Alpine F1 Team', 'O Alpine F1 Team representa a Renault na Fórmula 1.', 'Pierre Gasly', 'Esteban Ocon', 'image/alp.jpg', 'image/og.jpg', 'image/ap.jpg'),
+(1008, 'Willians F1 Team', 'A Williams Grand Prix Engineering Limited, competindo como Williams Racing, é uma equipe e construtor de Fórmula 1 fundada por Frank Williams e Patrick Head.', 'Alexandre Albon', 'Logan Sargento', 'image/w.jpg', 'image/al.jpg', 'image/wi.jpg'),
+(1009, 'Haas F1 Team', 'Haas Formula LLC, atualmente competindo como MoneyGram Haas F1 Team, é uma equipe de Fórmula 1 estabelecida por Gene Haas em abril de 2014. A equipe planejou sua estreia no início da temporada de 2015, mas optou por adiar a sua entrada para a temporada de 2016.', 'Kevin Magnussen', 'Nico Hulkenberg', 'image/haas.jpg', 'image/h.jpg', 'image/ha.jpg'),
+(1010, 'Alfa Romeo F1 Team', 'A marca Alfa Romeo retornou para a Fórmula 1 na temporada de 2018 como patrocinador título da equipe Sauber.', 'Valtteri Bottas', 'Zhou Guanyu', 'image/loalfa.jpg', 'image/bz.jpg', 'image/c43.jpg'),
+(1011, 'Alfa Tauri F1 Team', 'O Alpine F1 Team representa a Renault na Fórmula 1.', 'Daniel Ricciardo', 'Yuki Tsunoda', 'image/alfa.jpg', 'image/dt.jpg', 'image/alf.jpg');
 
 -- --------------------------------------------------------
 
@@ -537,7 +581,7 @@ ALTER TABLE `apostas`
 -- AUTO_INCREMENT for table `equipas`
 --
 ALTER TABLE `equipas`
-  MODIFY `id_equipas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_equipas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `equipa_premio`
@@ -549,13 +593,13 @@ ALTER TABLE `equipa_premio`
 -- AUTO_INCREMENT for table `pilotos`
 --
 ALTER TABLE `pilotos`
-  MODIFY `id_pilotos` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id_pilotos` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `quipas`
 --
 ALTER TABLE `quipas`
-  MODIFY `id_equipas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=972;
+  MODIFY `id_equipas` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1012;
 
 --
 -- AUTO_INCREMENT for table `usuarios`
